@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard</title>
+  <style>
+
+.approved-link {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.user-table {
+  width: 100%;
+  margin-top: 20px;
+  border-collapse: collapse;
+}
+
+.user-table th, .user-table td {
+  padding: 10px;
+  text-align: left;
+  border: 1px solid #ddd;
+}
+
+.user-table th {
+  background-color: #007bff;
+  color: #fff;
+}
+
+.user-table tbody tr:hover {
+  background-color: #007bff;
+}
+
+.dashboard-link, .approved-link {
+  display: block;
+  padding: 10px;
+  margin: 15px 0;
+  background-color: #007bff;
+  color: #fff;
+  text-decoration: none;
+  text-align: center;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+.dashboard-link:hover, .approved-link:hover {
+  background-color: #0056b3;
+}
+
+  </style>
+</head>
+<body>
+  <a href="/admin/home">HOME</a>
+  <div class="dashboard">
+    <h1>WELCOME ADMIN</h1>
+    <a href="/admin/dash" class="dashboard-link">PENDING RESERVATIONS</a>
+    <a href="/admin/approved" class="dashboard-link">APPROVED RESERVATIONS</a>
+    <a href="/admin/history" class="dashboard-link">RESERVATIONS HISTORY</a>
+    <% flash.each do |key, value| %>
+      <div class="<%= key %>"><%= value %></div>
+    <% end %>
+    <table border="2" class="user-table">
+      <thead>
+        <tr>
+          <th>Firstname</th>
+          <th>Middlename</th>
+          <th>Lastname</th>
+          <th>Email</th>
+          <th>Contact</th>
+          <th>Room Type</th>
+          <th>Check In</th>
+          <th>Check Out</th>
+          <th>Status</th>
+          <th>Action</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @users.each do |user| %>
+          <tr>
+            <td><%= user.firstname %></td>
+            <td><%= user.middlename %></td>
+            <td><%= user.lastname %></td>
+            <td><%= user.email %></td>
+            <td><%= user.contact %></td>
+            <td><%= user.room_type %></td>
+            <td><%= user.check_in %></td>
+            <td><%= user.check_out %></td>
+            <td><%= user.status || 'Pending' %></td>
+            <td><%= link_to 'Approve', approve_record_path(user), method: :get %></td>
+            <td><a href="/admin/reject/<%= user.id %>">Decline</a></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</body>
+</html>

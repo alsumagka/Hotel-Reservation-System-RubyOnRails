@@ -1,0 +1,42 @@
+<div class="pli">
+    <a href="/user/main">HOME</a>
+</div>
+<div class="ambot">
+    <form action="/user/create" method="post" style="margin-left: 30px; margin-top: 30px;">
+        <label>Firstname:</label>
+        <input type="text" name="fname" placeholder="Enter Firstname" class="form-control" required>
+
+        <label>Middlename:</label>
+        <input type="text" name="mname" placeholder="Enter Middlename" class="form-control" required>
+
+        <label>Lastname:</label>
+        <input type="text" name="lname" placeholder="Enter Lastname" class="form-control" required>
+
+        <label>Contact Number:</label>
+        <input type="text" name="cont" placeholder="Enter Contact Number" class="form-control" required>
+
+        <label>Email:</label>
+        <input type="email" name="email" placeholder="Enter Email Address" class="form-control" required>
+
+        <label>Room Type:</label>
+        <input type="text" name="room_type" value="<%= @rooms.room_type %>" class="form-control" required readonly>
+
+        <label>Check-In-Date:</label>
+        <input type="date" name="check_in" class="form-control" required>
+
+        <label>Check-Out-Date:</label>
+        <input type="date" name="check_out" class="form-control" required>
+
+        <input type="submit" value="Submit">
+    </form>
+    # <script>
+    #     document.addEventListener('DOMContentLoaded', function() {
+    #         var urlParams = new URLSearchParams(window.location.search);
+    #         var roomType = urlParams.get('room_type');
+    
+    #         if (roomType) {
+    #             document.getElementById('roomType').value = roomType;
+    #         }
+    #     });
+    # </script>
+</div>

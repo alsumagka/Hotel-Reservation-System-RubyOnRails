@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+  
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Arial', sans-serif;
+  background-color: #f4f4f4;
+}
+
+.rooms-container {
+  max-width: 800px;
+  margin: 50px auto;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.add-room-link {
+  display: block;
+  padding: 10px;
+  margin-bottom: 20px;
+  background-color: #007bff;
+  color: #fff;
+  text-decoration: none;
+  text-align: center;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+.add-room-link:hover {
+  background-color: #0056b3;
+}
+
+.rooms-table {
+  width: 100%;
+  margin-top: 20px;
+  border-collapse: collapse;
+}
+
+.rooms-table th, .rooms-table td {
+  padding: 10px;
+  text-align: left;
+  border: 1px solid #ddd;
+}
+
+.rooms-table th {
+  background-color: #007bff;
+  color: #fff;
+}
+
+.rooms-table tbody tr:hover {
+  background-color: #a0a0a0;
+}
+
+  </style>
+  <title>Rooms</title>
+</head>
+<body>
+    <a href="/admin/home">HOME</a>
+  <div class="rooms-container">
+    <a href="/admin/nroom" class="add-room-link">ADD ROOM</a>
+    <h1>ROOMS</h1>
+
+    <table border="1" class="rooms-table">
+      <thead>
+        <tr>
+          <th>ROOM TYPE</th>
+          <th>DESCRIPTION</th>
+          <th>PRICE</th>
+          <th>STATUS</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @rooms.each do |rom| %>
+          <tr>
+            <td><%= rom.room_type %></td>
+            <td><%= rom.description %></td>
+            <td><%= rom.price %></td>
+            <td><%= rom.status %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</body>
+</html>

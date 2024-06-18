@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+
+  body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f4f4;
+  }
+  
+  .room-listings {
+    max-width: 800px;
+    margin: 50px auto;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .room-container {
+    margin-bottom: 20px;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+  }
+  
+  h1 {
+    text-align: center;
+  }
+  
+  .book-now-btn {
+    background-color: #007bff;
+    color: #fff;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .book-now-btn:hover {
+    background-color: #0056b3;
+  }
+  
+  .room-container a {
+    text-decoration: none;
+    color: #fff;
+  }
+  </style>
+  <title>Room Listings</title>
+</head>
+<body>
+    <div class="room-listings">
+      <h1>Available Rooms</h1>
+  
+      <% @rooms.reject { |room| room.status == 'Reserved' }.each do |room| %>
+        <div class="room-container">
+          <h2><%= room.room_type %></h2>
+          <p><strong>Description:</strong> <%= room.description %></p>
+          <p><strong>Price:</strong> <%= room.price %></p>
+  
+          <button class="book-now-btn"><a href="/user/register/<%= room.id %>">BOOK NOW</a></button>
+        </div>
+      <% end %>
+    </div>
+  </body>
+  
+</html>

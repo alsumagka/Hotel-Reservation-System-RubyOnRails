@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+
+.approved-container {
+  max-width: 800px;
+  margin: 50px auto;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.back-link {
+  display: block;
+  padding: 10px;
+  margin-bottom: 20px;
+  background-color: #007bff;
+  color: #fff;
+  text-decoration: none;
+  text-align: center;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+.back-link:hover {
+  background-color: #0056b3;
+}
+
+.approved-table {
+  width: 100%;
+  margin-top: 20px;
+  border-collapse: collapse;
+}
+
+.approved-table th, .approved-table td {
+  padding: 10px;
+  text-align: left;
+  border: 1px solid #ddd;
+}
+
+.approved-table th {
+  background-color: #007bff;
+  color: #fff;
+}
+
+.approved-table tbody tr:hover {
+  background-color: #007bff;
+}
+
+  </style>
+  <title>Approved Reservations</title>
+</head>
+<body>
+  <div class="approved-container">
+    <a href="/admin/dash" class="back-link">BACK</a>
+    <h1>APPROVED RESERVATIONS</h1>
+
+    <table border="2" class="approved-table">
+      <thead>
+        <tr>
+          <th>Firstname</th>
+          <th>Middlename</th>
+          <th>Lastname</th>
+          <th>Email</th>
+          <th>Contact</th>
+          <th>Room Type</th>
+          <th>Check In</th>
+          <th>Check Out</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @approved.each do |user| %>
+          <tr>
+            <td><%= user.firstname %></td>
+            <td><%= user.middlename %></td>
+            <td><%= user.lastname %></td>
+            <td><%= user.email %></td>
+            <td><%= user.contact %></td>
+            <td><%= user.room_type %></td>
+            <td><%= user.check_in %></td>
+            <td><%= user.check_out %></td>
+            <td>
+              <%= link_to 'Remove', remove_reservation_path(user), method: :get %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</body>
+</html>
